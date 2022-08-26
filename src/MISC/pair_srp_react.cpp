@@ -125,7 +125,8 @@ void PairSRPREACT::settings(int narg, char **arg)
 
   // find whether id is of bond/break or bond/create
   const char *reactid = arg[3];
-  if (utils::strmatch(modify->get_fix_by_id(reactid)->style,"^bond/break")) {
+  if (utils::strmatch(modify->get_fix_by_id(reactid)->style,"^bond/break") || 
+      utils::strmatch(modify->get_fix_by_id(reactid)->style,"^bond/break/edpd")) {
     bond_break = true;
     idbreak = utils::strdup(reactid);
   } else if (utils::strmatch(modify->get_fix_by_id(reactid)->style,"^bond/create")) {
